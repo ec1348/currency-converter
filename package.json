@@ -1,0 +1,11 @@
+{
+  "name": "asiayo",
+  "version": "1.0.0",
+  "description": "this is the app server with currency converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Chen",
+  "license": "ISC"
+}
