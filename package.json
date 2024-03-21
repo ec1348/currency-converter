@@ -4,6 +4,7 @@
   "description": "this is the app server with currency converter",
   "main": "index.js",
   "scripts": {
+    "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eric Chen",
