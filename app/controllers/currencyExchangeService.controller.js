@@ -23,14 +23,17 @@ const exchangeRateService = new ExchangeRateService(currencies);
 exports.exchangeRate = async (req, res) => {
   const source = req.query.source;
   const target = req.query.target;
-  const amount = parseFloat(req.query.amount);
+  const amount = req.query.amount;
 
   try {
     //handle 若輸入的 source 或 target 系統並不提供時的案例
     if(!(source in currencies) || !(target in currencies[source])){
-      return res.status(401).json({ error: 'Invalid source or target' });
+      return res.status(400).json({ error: 'Invalid source or target' });
     } 
     //若輸入的金額為非數字或無法辨認時的案例
+    if (!/^\d+(\.\d+)?$/.test(amount)) {
+      return res.status(400).json({ error: 'Invalid amount' });
+    }
     //輸入的數字需四捨五入到小數點第二位，並請提供覆蓋有小數與沒有 小數的多種案例
     const convertedAmount = exchangeRateService.convert(source, target, amount);
     res.json({ msg: "success", amount: convertedAmount });
